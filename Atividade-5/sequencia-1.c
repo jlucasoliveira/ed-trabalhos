@@ -1,8 +1,8 @@
 #include <stdio.h>
 
-void copia(int* a, int* b)
+void ls_troca(ListaSeq* l, int i, int j)
 {
-	int aux = *a;
-	*a = *b;
-	*b = aux;
+	Aluno a = l->itens[i];
+	ls_remover(l, a.matricula);
+	ls_inserir_index(l, a, j);
 }

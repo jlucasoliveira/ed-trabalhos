@@ -108,7 +108,7 @@ void merge_sort(int* vet, int ini, int fim)
 		merge(vet, ini, meio, fim);
 	}
 }
-
+/*
 int main()
 {
 	clock_t temp1 = 0, temp2 = 0, temp3 = 0, temp4 = 0, temp5 = 0, start, end;
@@ -165,4 +165,4 @@ int main()
 	printf("Insert sort: %ld\n", temp3);
 	printf("Insert sort v2: %ld\n", temp4);
 	printf("Merge sort: %ld\n", temp5);
-}
+}*/

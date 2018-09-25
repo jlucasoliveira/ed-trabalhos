@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
+#include "../Atividade-2/ordenacao.c"
 
 int copia(int* a, int* b)
 {
@@ -10,45 +11,24 @@ int copia(int* a, int* b)
 	*b = aux;
 }
 
-int merge(int* vet, int ini, int p1, int fim)
+int merge3(int* vet, int ini, int p1, int p2, int fim)
 {
-	int n1 = p1 - ini + 1;
-	int n2 = fim - p1;
-	int l[n1+1], r[n2+1];
-
-	for (int i = 0; i < n1; i++) l[i] = vet[ini+i];
-	for (int i = 0; i < n2; i++) r[i] = vet[p1+i];
-
-	int i = 0, j = 0;
-	l[n1] = INT_MAX, r[n2] = INT_MAX;
-
-	for (int k = ini; k <= fim; k++)
-	{
-		if (l[i] < r[j])
-		{
-			vet[k] = l[i];
-			i++;
-		}
-		else if (r[j] < l[i])
-		{
-			vet[k] = r[j];
-			j++;
-		}
-	}
+	merge(vet, ini, p1, p2);
+	merge(vet, ini, p2, fim);
 }
 
-void merge_sort(int* vet, int ini, int fim)
+void merge_sort3(int* vet, int ini, int fim)
 {
 	if (ini < fim || fim - ini > 1)
 	{
-		int p1 = ini + ((fim-ini)/3);
-		int p2 = ini + 2*((fim-ini)/3) + 1;
+		int p1 = (fim-ini)/3;
+		int p2 = fim-p1;
 
-		merge_sort(vet, ini, p1);
-		merge_sort(vet, p1, p2);
-		merge_sort(vet, p2, fim);
+		merge_sort3(vet, ini, p1);
+		merge_sort3(vet, p1+1, p2);
+		merge_sort3(vet, p2+1, fim);
 
-		merge(vet, ini, p1, p2, fim);
+		merge3(vet, ini, p1, p2, fim);
 	}
 }
 
