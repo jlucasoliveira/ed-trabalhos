@@ -57,16 +57,24 @@ int le_remover(LstEc* l, int mat)
 	return 0;
 }
 
-Aluno le_buscar(LstEc* l, int mat)
+No* le_buscar_pont(LstEc* l, int mat)
 {
 	No* atual = l->inicio;
 
 	while (atual != NULL)
 	{
 		if (atual->info.mat == mat)
-			return atual->info;
+			return atual;
 		atual = atual->prox;
 	}
+
+	return NULL;
+}
+
+Aluno le_buscar(LstEc* l, int mat)
+{	
+	No* atual = le_buscar_pont(l, mat);
+	if (atual != NULL) return atual->info;
 
 	Aluno erno;
 	strcpy(erno.nome, "ERROR");
