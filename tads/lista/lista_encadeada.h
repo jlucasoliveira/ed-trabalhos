@@ -6,7 +6,7 @@ typedef struct
 
 typedef struct no
 {
-	Aluno info;
+	int info;
 	struct no* prox;
 } No;
 
@@ -16,8 +16,8 @@ typedef struct
 } LstEc;
 
 LstEc* le_criar();
-void le_inserir(LstEc* l, Aluno a);
+void le_inserir(LstEc* l, int a);
 int le_remover(LstEc* l, int mat);
-Aluno le_buscar(LstEc* l, int mat);
+int le_buscar(LstEc* l, int mat);
 No* le_buscar_pont(LstEc* l, int mat);
 void le_liberar(LstEc* l);

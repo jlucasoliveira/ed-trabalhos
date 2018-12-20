@@ -10,7 +10,7 @@ typedef struct
 
 typedef struct no
 {
-	Aluno info;
+	int info;
 	struct no* prox;
 	struct no* ant;
 } No;
@@ -33,26 +33,22 @@ No* ld_buscar_pont(LstEd* l, int mat)
 
 	while (atual != NULL)
 	{
-		if (atual->info.mat == mat)
+		if (atual->info == mat)
 			return atual;
 		atual = atual->prox;
 	}
 	return NULL;
 }
 
-Aluno ld_buscar(LstEd* l, int mat)
+int ld_buscar(LstEd* l, int mat)
 {
 	No* aluno = ld_buscar_pont(l, mat);
 	if (aluno != NULL)
 		return aluno->info;
-	
-	Aluno erno;
-	strcpy(erno.nome, "ERROR");
-	erno.mat = -1;
-	return erno;
+	return -1;
 }
 
-void ld_inserir(LstEd* l, Aluno a)
+void ld_inserir(LstEd* l, int a)
 {
 	No* item = (No*) malloc(sizeof(No));
 	item->info = a;

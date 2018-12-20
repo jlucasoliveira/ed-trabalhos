@@ -69,8 +69,9 @@ int particiona(int* vet, int ini, int fim)
 			i++;
 			troca(&vet[i], &vet[j]);
 		}
-	troca(&vet[ini], &vet[i+1]);
-	return i+1;
+
+	troca(&vet[ini], &vet[i]);	
+	return i;
 }
 
 void quick_sort(int* vet, int ini, int fim)
@@ -78,14 +79,12 @@ void quick_sort(int* vet, int ini, int fim)
 	if (ini < fim)
 	{
 		int q = particiona(vet, ini, fim);
-		printf("\npivo: %d\n", q);
 		quick_sort(vet, ini, q-1);
 		quick_sort(vet, q+1, fim);
 	}
 }
 
 */
-
 
 void quick_sort(int* vet, int ini, int fim)
 {
@@ -112,6 +111,7 @@ void quick_sort(int* vet, int ini, int fim)
 	if (i < fim) quick_sort(vet, i, fim);
 }
 
+
 void copia(int* vet, int* aux, int n)
 {
 	for (int i = 0; i < n; i++)
@@ -120,7 +120,7 @@ void copia(int* vet, int* aux, int n)
 
 int main(){
 	clock_t tempo_merge = 0, tempo_quick = 0, start, end;
-	int i, j, k = 10000, n = 10000;
+	int i, j, k = 1, n = 20;
 	int *vet = (int*) malloc(n*sizeof(int));
 	int *aux = (int*) malloc(n*sizeof(int));
 
@@ -139,12 +139,16 @@ int main(){
 		copia(vet, aux, n);
 		start = clock();
 		quick_sort(aux, 0, n-1);
+
+		for (j = 0; j < n; j++)
+			printf("[%d]", aux[j]);
+
 		end = clock();
 		tempo_quick+=(end-start);
 
 	}
 
-	printf("Merge Sort: %fs\n", tempo_merge/(double) CLOCKS_PER_SEC);
+	printf("\nMerge Sort: %fs\n", tempo_merge/(double) CLOCKS_PER_SEC);
 	printf("Quick Sort: %fs\n", tempo_quick/(double) CLOCKS_PER_SEC);
 
 	return 0;

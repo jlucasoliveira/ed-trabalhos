@@ -9,7 +9,7 @@ typedef struct
 
 typedef struct no
 {
-	Aluno info;
+	int info;
 	struct no* prox;
 } No;
 
@@ -25,7 +25,7 @@ LstEc* le_criar()
 	return lista;
 }
 
-void le_inserir(LstEc* l, Aluno a)
+void le_inserir(LstEc* l, int a)
 {
 	No* item = (No*) malloc(sizeof(No));
 	item->info = a;
@@ -40,7 +40,7 @@ int le_remover(LstEc* l, int mat)
 
 	while(atual != NULL)
 	{
-		if (atual->info.mat == mat)
+		if (atual->info == mat)
 		{
 			if (ant != NULL)
 				ant->prox = atual->prox;
@@ -63,7 +63,7 @@ No* le_buscar_pont(LstEc* l, int mat)
 
 	while (atual != NULL)
 	{
-		if (atual->info.mat == mat)
+		if (atual->info == mat)
 			return atual;
 		atual = atual->prox;
 	}
@@ -71,15 +71,12 @@ No* le_buscar_pont(LstEc* l, int mat)
 	return NULL;
 }
 
-Aluno le_buscar(LstEc* l, int mat)
+int le_buscar(LstEc* l, int mat)
 {	
 	No* atual = le_buscar_pont(l, mat);
 	if (atual != NULL) return atual->info;
 
-	Aluno erno;
-	strcpy(erno.nome, "ERROR");
-	erno.mat = -1;
-
+	int erno = 1;
 	return erno;
 }
 
